@@ -10,11 +10,10 @@ const InserirNovoLocal = () => {
 
   const schema = yup.object().shape({
     NomeLocal: yup.string().required('Insira um nome'),
-    Latitude: yup.string().required('Insira a latitude'),
-    Longitude: yup.string().required('Insira a longitude'),
-    qtdPassagens: yup.string().required('Insira a quantidade de passagens'),
-    precoPassagem: yup.string().required('Insira o preço da passagem'),
-    imagens: yup.mixed().required('Faça o upload de pelo menos uma imagem'),
+    Latitude: yup.number().required('Insira a latitude'),
+    Longitude: yup.number().required('Insira a longitude'),
+    qtdPassagens: yup.number().required('Insira a quantidade de passagens'),
+    precoPassagem: yup.number().required('Insira o preço da passagem'),
   });
 
   const handleSubmit = async (event) => {
@@ -26,25 +25,20 @@ const InserirNovoLocal = () => {
       // Validação do formulário usando o schema definido
       await schema.validate({
         NomeLocal: form.NomeLocal.value,
-        Latitude: form.Latitude.value,
-        Longitude: form.Longitude.value,
-        qtdPassagens: form.qtdPassagens.value,
-        precoPassagem: form.precoPassagem.value,
-        imagens: form.imagens.files,
+        Latitude: parseFloat(form.Latitude.value),
+        Longitude: parseFloat(form.Longitude.value),
+        qtdPassagens: parseInt(form.qtdPassagens.value, 10),
+        precoPassagem: parseFloat(form.precoPassagem.value),
       }, { abortEarly: false });
 
       // Preparação dos dados para envio ao servidor
       const data = {
         nome: form.NomeLocal.value,
-        latitude: form.Latitude.value,
-        longitude: form.Longitude.value,
-        passagens: form.qtdPassagens.value,
-        precoPassagem: form.precoPassagem.value, // Converter para número
+        latitude: parseFloat(form.Latitude.value),
+        longitude: parseFloat(form.Longitude.value),
+        passagens: parseInt(form.qtdPassagens.value, 10),
+        precoPassagem: parseFloat(form.precoPassagem.value), // Converter para número
       };
-
-      console.log(data);
-      console.log("PrecoPassagem: ", precoPassagem.value)
-      console.log("qtdPassagens: ", qtdPassagens.value)
 
       // Envio dos dados para o backend usando Axios
       const response = await axios.post('http://localhost:3000/api/localidades', data, {
@@ -100,7 +94,7 @@ const InserirNovoLocal = () => {
       <Row className="mb-3">
         <Form.Group as={Col} sm={6} controlId="Latitude">
           <Form.Label>Latitude</Form.Label>
-          <Form.Control type="text" name="Latitude" required />
+          <Form.Control type="number" step="any" name="Latitude" required />
           <Form.Control.Feedback type="invalid">
             Insira a latitude.
           </Form.Control.Feedback>
@@ -108,7 +102,7 @@ const InserirNovoLocal = () => {
 
         <Form.Group as={Col} sm={6} controlId="Longitude">
           <Form.Label>Longitude</Form.Label>
-          <Form.Control type="text" name="Longitude" required />
+          <Form.Control type="number" step="any" name="Longitude" required />
           <Form.Control.Feedback type="invalid">
             Insira a longitude.
           </Form.Control.Feedback>
@@ -118,7 +112,7 @@ const InserirNovoLocal = () => {
       <Row className="mb-3">
         <Form.Group as={Col} sm={6} controlId="qtdPassagens">
           <Form.Label>Quantidade de Passagens</Form.Label>
-          <Form.Control type="text" name="qtdPassagens" required />
+          <Form.Control type="number" name="qtdPassagens" required />
           <Form.Control.Feedback type="invalid">
             Insira a quantidade de passagens.
           </Form.Control.Feedback>
@@ -126,12 +120,13 @@ const InserirNovoLocal = () => {
 
         <Form.Group as={Col} sm={6} controlId="precoPassagem">
           <Form.Label>Preço da Passagem</Form.Label>
-          <Form.Control type="text" name="precoPassagem" required />
+          <Form.Control type="number" step="any" name="precoPassagem" required />
           <Form.Control.Feedback type="invalid">
             Insira o preço da passagem.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
+
       <div className="d-flex justify-content-center mt-3">
         <Button variant="success" type="submit" id="enviar">
           Enviar

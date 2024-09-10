@@ -5,7 +5,9 @@ A página inicial é uma tela de login, com possibilidade de cadastro de novos u
 Ao entrar no site, um mapa interativo surge, com diversos pontos marcados. Ao clicar em um ponto, uma tela de compra de passagens para esse local irá surgir, e o cliente pode comprar quantas passagens quiser. `<br>`
 Alternativamente, caso entre como um administrador, o usuário pode realizar um CRUD com os locais no mapa, ou seja, adicionar locais novos, atualizar locais já existentes, e deletar locais desnecessários. `<br>`
 
-O primeiro usuario criado recebe o cargo de administrador automaticamente!
+Para logar como adm use: Email: adm@gmail.com senha: 1234
+
+Para logar como usuario basta se cadastrar! Lembrando que voce pode usar dados ficticios sem problemas!
 
 # Problema solucionado
 

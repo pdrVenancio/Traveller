@@ -114,9 +114,9 @@ const Map = ({ apikey }) => {
           <Modal.Title>{selectedLocation?.nome}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Descrição: {selectedLocation?.descricao}</p>
-          <p>Passagens disponíveis: {selectedLocation?.passagens}</p>
-          <p>Preço: {selectedLocation?.precoPassagem}</p>
+          {/* <p>Descrição: {selectedLocation?.descricao}</p> */}
+          <p className='text-start'><b>Passagens disponíveis:</b> {selectedLocation?.passagens}</p>
+          <p className='text-start'><b>Preço:</b> {selectedLocation?.precoPassagem}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
