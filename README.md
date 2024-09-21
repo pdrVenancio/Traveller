@@ -1,3 +1,5 @@
+http://54.207.24.168:5173/
+
 # Trabalho Traveller
 
 O projeto consiste em um site para compra de passagens de avião para diversos lugares utilizando um mapa para encontrar os lugares disponíveis.
